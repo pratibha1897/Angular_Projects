@@ -1,23 +1,59 @@
 <div class="registration-form">
     <h2>Registration Form</h2>
     <form (ngSubmit)="onSubmit()" #registrationForm="ngForm">
+      <div class="form-group radio-group">
+        <label>Role : </label>
+        <div class="radio-label">
+          <input type="radio" name="role" [(ngModel)]="user.role" value="student" checked>
+          <span>Student</span>
+        </div>
+        <div class="radio-label">
+          <input type="radio" name="role" [(ngModel)]="user.role" value="employee">
+          <span>Employee</span>
+        </div>
+      </div>      
+      
+      
+      <div class="form-group" *ngIf="user.role === 'student'">
+        <label for="schoolName">School Name</label>
+        <input type="text" id="schoolName" name="schoolName" [(ngModel)]="user.schoolName" required>
+      </div>
+      
+      <div class="form-group" *ngIf="user.role === 'employee'">
+        <label for="organizationName">Organization Name</label>
+        <input type="text" id="organizationName" name="organizationName" [(ngModel)]="user.organizationName" required>
+      </div>      
+      
       <div class="form-group">
-        <label for="username">Username</label>
+        <label for="username">Username<span class="required">*</span></label>
         <input type="text" id="username" name="username" [(ngModel)]="user.username" required>
+        <div class="validation-message" *ngIf="hasSpaces(user.username)">
+          Username cannot contain spaces.
+        </div>
       </div>
       <div class="form-group">
-        <label for="mobile">Mobile Number</label>
-        <input type="tel" id="mobile" name="mobile" [(ngModel)]="user.mobile" pattern="[0-9]{10}" required>
+        <label for="mobile">Mobile Number<span class="required">*</span></label>
+        <input type="tel" id="mobile" name="mobile" [(ngModel)]="user.mobile" pattern="[0-9]{10}" (input)="onMobileInput($event)" required>
+        <div class="validation-message" *ngIf="onlyTenDigits(user.mobile)">
+          Mobile number should not exceed 10 digits.
+        </div>
       </div>
       <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" [(ngModel)]="user.email" required>
+        <label for="email">Email<span class="required">*</span></label>
+        <input type="email" id="email" name="email" [(ngModel)]="user.email" required email #emailField="ngModel">
+        <div *ngIf="emailField.invalid && (emailField.dirty || emailField.touched)" class="error-message">
+          <div *ngIf="emailField.hasError('required')">Email is required.</div>
+          <div *ngIf="emailField.hasError('email')">Invalid email format.</div>
+        </div>
       </div>
       <div class="form-group">
-        <label for="password">Password</label>
+        <label for="password">Password<span class="required">*</span></label>
         <input type="password" id="password" name="password" [(ngModel)]="user.password" required>
+        <div class="validation-message" *ngIf="hasSpaces(user.password)">
+          Password cannot contain spaces.
+        </div>
       </div>
-      <button type="submit" [disabled]="registrationForm.invalid">Register</button>
+      <button type="submit" [disabled]="registrationForm.invalid" (click)="onSubmit()">Register</button>
     </form>
   </div>
   

@@ -59,5 +59,25 @@
           cursor: not-allowed;
         }
       }
+      
+      .required {
+        color: red;
+        margin-left: 4px;
+      }
+      
+
   }
+
+/* Green style for success */
+::ng-deep .success-snackbar {
+  background-color: #4caf50;
+  color: white;
+}
+
+/* Red style for error */
+::ng-deep .error-snackbar {
+  background-color: #f44336;
+  color: white;
+}
+
   

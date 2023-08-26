@@ -1,0 +1,28 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+
+    .left-options a,    
+    .right-options a {
+      color: #fff;
+      text-decoration: none;
+      margin-right: 10px;
+    }
+  
+    .left-options {
+        display: flex;
+        gap: 20px;
+      }
+    
+      .right-options {
+        display: flex;
+        gap: 20px;
+        margin-left: auto; // Push the logout link to the right
+      }
+  }
+  
