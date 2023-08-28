@@ -8,7 +8,7 @@
   
     h2 {
       font-size: 1.5em;
-      margin-bottom: 15px;
+      margin-bottom: 35px;
       text-align: center;
       color: #333;
     }
@@ -115,6 +115,21 @@
   color: white;
 }
 
+.already-account {
+  margin-top: 20px;
+  font-size: 14px;
+  text-align: center;
+  color: #555;
+
+  a {
+    color: #007bff;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}      
 
       
   }

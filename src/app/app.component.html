@@ -1,2 +1,7 @@
-<app-navbar></app-navbar>
+<ng-container *ngIf="isLoggedIn; else loggedOutNav">
+  <app-navbar-logged-in></app-navbar-logged-in>
+</ng-container>
+<ng-template #loggedOutNav>
+  <app-navbar-logged-out></app-navbar-logged-out>
+</ng-template>
 <router-outlet></router-outlet>

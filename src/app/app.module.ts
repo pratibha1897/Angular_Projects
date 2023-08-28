@@ -8,9 +8,8 @@ import { RegisterComponent } from './register/register.component';
 import { FormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SuccessComponent } from './dashboard/dashboard.component';
-import { NavbarComponent } from './navbar/navbar.component';
 import { NavBarLoggedOutComponent } from './nav-bar-logged-out/nav-bar-logged-out.component';
-import { NavBarLoggedInComponent } from './nav-bar-logged-in/nav-bar-logged-in.component'; // Import MatSnackBarModule
+import { NavBarLoggedInComponent } from './nav-bar-logged-in/nav-bar-logged-in.component'; 
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -25,7 +24,6 @@ const routes: Routes = [
     LoginComponent,
     RegisterComponent,
     SuccessComponent,
-    NavbarComponent,
     NavBarLoggedOutComponent,
     NavBarLoggedInComponent,
     

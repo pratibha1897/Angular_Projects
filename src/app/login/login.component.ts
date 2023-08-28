@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router'; // Import Router
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
-
+import { AppComponent } from '../app.component'; // Import the AppComponent
 
 
 @Component({
@@ -19,16 +19,21 @@ export class LoginComponent {
 
   @Output() loggedIn = new EventEmitter<{ user_name: string }>();
 
-  constructor(private snackBar: MatSnackBar, private router: Router) {}
+  constructor(private snackBar1: MatSnackBar, private router: Router, private appComponent: AppComponent) {}
   
-  openSnackBar(message: string, success: boolean) {
+  openSnackBar1(message: string, success: boolean) {
     const config: MatSnackBarConfig = {
-      duration: 100000, // Display for 5 seconds
+      // duration: 5000, // Display for 5 seconds
+      // verticalPosition: 'top',
+      // horizontalPosition: 'end',
+      // panelClass: success ? ['success-snackbar'] : ['error-snackbar']
+    };
+    this.snackBar1.open(message, 'Close', {
+      duration: 5000, // Display for 5 seconds
       verticalPosition: 'top',
       horizontalPosition: 'end',
-      panelClass: success ? 'success-snackbar' : 'error-snackbar'
-    };
-    this.snackBar.open(message, 'Close', config);
+      panelClass: success ? ['success-snackbar1'] : ['error-snackbar1']
+    });
   }
   
   
@@ -46,13 +51,14 @@ export class LoginComponent {
     if (matchedUser) {
       // Successful login
       localStorage.setItem('loggedInUser', JSON.stringify(matchedUser)); // Store user data
-      this.openSnackBar('Login successful!', true);
+      this.openSnackBar1('Login successful!', true);
       this.router.navigate(['/dashboard']); // Redirect to success page
       localStorage.setItem('loggedInStatus', 'true');
+      this.appComponent.updateLoggedInStatus(); // Notify AppComponent of login change
 
     } else {
       //alert('Login failed. Please check your credentials.');
-      this.openSnackBar('Login failed. Please check your credentials.', false);
+      this.openSnackBar1('Login failed. Please check your credentials.', false);
     }
   }
   

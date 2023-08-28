@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,17 +6,22 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  isLoggedIn = false;
+  isLoggedIn: boolean = false;
   loggedInUsername = '';
-  title = 'pratibha';
-  func(){
-    const name = "Ravi";
-    return name;
-  }
-
-  onLoggedIn(user: { user_name: string }) {
-    this.isLoggedIn = true;
-    this.loggedInUsername = user.user_name; // Extract the username from the event object
+  //title = 'pratibha';
+ // func(){
+ //   const name = "Ravi";
+   // return name;
+  //}
+  constructor(private cdRef: ChangeDetectorRef) {
+    const loggedInStatus = localStorage.getItem('loggedInStatus');
+    this.isLoggedIn = loggedInStatus === 'true';
   }
   
+  updateLoggedInStatus() {
+    const loggedInStatus = localStorage.getItem('loggedInStatus');
+    this.isLoggedIn = loggedInStatus === 'true';
+    this.cdRef.detectChanges();
+  } 
+
 }

@@ -64,18 +64,32 @@
         color: red;
         margin-left: 4px;
       }
-      
+      .no-account {
+        margin-top: 20px;
+        font-size: 14px;
+        text-align: center;
+        color: #555;
+    
+        a {
+          color: #007bff;
+          text-decoration: none;
+    
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }      
 
   }
 
 /* Green style for success */
-::ng-deep .success-snackbar {
+.success-snackbar1 {
   background-color: #4caf50;
   color: white;
 }
 
 /* Red style for error */
-::ng-deep .error-snackbar {
+.error-snackbar1 {
   background-color: #f44336;
   color: white;
 }
